@@ -9,7 +9,10 @@ def main():
     # screen.draw_line(line=line, fill_color="green")
 
     c1 = Cell(screen)
-    c1.draw(1500, 150, 200, 200)
+    c1.draw(150, 150, 200, 200)
+    c2 = Cell(screen)
+    c2.draw(300, 150, 350, 200)
+    c1.draw_move(c2, False)
 
     screen.wait_for_close()
     

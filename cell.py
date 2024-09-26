@@ -13,6 +13,8 @@ class Cell:
         self._win = win
 
     def draw(self, x1, y1, x2, y2):
+        if self._win is None:
+            return
         self._x1 = x1
         self._y1 = y1
         self._x2 = x2
@@ -29,4 +31,20 @@ class Cell:
         if self.has_right_wall:
             line = Line(Point(x2, y1), Point(x2, y2))
             self._win.draw_line(line)
+
+    def center_point_of_a_cell(self):
+        half_length = abs(self._x2 - self._x1) // 2
+        x = half_length + self._x1
+        y = half_length + self._y1
+        return Point(x, y)
+
+    def draw_move(self, to_cell, undo=False):
+        center_from = self.center_point_of_a_cell()
+        center_to = to_cell.center_point_of_a_cell()
+        line = Line(center_from, center_to)
+        fill_color = "red"
+        if undo:
+            fill_color = "gray"
+        self._win.draw_line(line, fill_color)
+         
         
